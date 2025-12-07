@@ -25,8 +25,7 @@
   }
   .card {
     background: var(--card);
-    border-radius: 2px;
-    box-shadow: 0px 0px rgba(10,49,97,0.08);
+    border-radius: 0px;
     padding: 18px;
   }
 
@@ -41,19 +40,19 @@
 
   /* Map container */
   .map-wrap {
-    width: 200%;
+    width: 100%;
     min-height: 300px;
     position: relative;
     overflow: hidden;
-    border-radius: 0px;
+    border-radius: 10px;
   }
 
   svg { width:100%; height:100%; display:block; }
 
   .state {
-    fill: #e8eef6;
-    stroke: #fff;
-    stroke-width: 0.8;
+    fill: #dedede;
+    stroke: #dedede;
+    stroke-width: 1;
     cursor: pointer;
     transition: fill 160ms ease, transform 120ms ease;
   }
@@ -136,15 +135,22 @@
 
   // OPTIONAL: Example data mapping --- map state id (fips) to a sample numeric value.
   // Replace with your real data keyed by state's ISO or FIPS as needed.
-  const sampleValues = {};
-  // assign random-ish values for demo coloring
-  states.forEach(s => {
-    sampleValues[s.id] = Math.round(Math.random() * 100); // 0..100
-  });
+  const sampleValues = {
+  "06": 1,  // CAL
+  "19": 1, // IO
+  "32": 1,  // NEV
+  "49": 1,  // UT
+  "56": 1,  // WY
+  "31": 1,  // NE
+  "26": 1,  // MI
+  "17": 1,  // IL
+  "18": 1,  // IN
+};
 
   // Color scale for values
-  const color = d3.scaleQuantize().domain([0,100])
-    .range(["#e8eef6","#8fb6ea","#3a75c4"]);
+const color = d3.scaleQuantize()
+  .domain([0, 1])
+  .range(["#ffffff", "#B31942"]);
 
   // Draw states
   g.selectAll("path.state")
@@ -185,30 +191,47 @@
     .attr("class","state-borders")
     .attr("d", path)
     .attr("fill","none")
-    .attr("stroke","#fff")
+    .attr("stroke","#ffff")
     .attr("stroke-width",2)
     .attr("pointer-events","none");
 
   // Add simple labels for larger states (optional)
   // We filter to labels where centroids exist inside the path bounding box.
-  const labels = g.selectAll("text.label")
-    .data(states.filter(d => {
-      // crude area filter to avoid tiny states; adjust threshold as needed
-      return d3.geoArea(d) > 0.0006;
-    }))
-    .enter()
-    .append("text")
-      .attr("class","label")
-      .attr("transform", d => {
-        const c = path.centroid(d);
-        return `translate(${c[0]},${c[1]})`;
-      })
-      .attr("text-anchor","middle")
-      .attr("dy","0.35em")
-      .style("font-size","9px")
-      .style("pointer-events","none")
-      .style("fill","#0A3161")
-      .text(d => d.properties && d.properties.name ? d.properties.name.split(' ')[0] : '');
+// Add labels ONLY to red states
+// Add labels ONLY to red states
+const labels = g.selectAll("g.label-group")
+  .data(states.filter(d => sampleValues[d.id] === 1)) // ONLY red states
+  .enter()
+  .append("g")
+    .attr("class", "label-group")
+    .attr("transform", d => {
+      const c = path.centroid(d);
+      return `translate(${c[0]},${c[1]})`;
+    });
+
+// Add white background rectangle
+labels.append("rect")
+  .attr("x", d => -20)   // adjust width / padding as needed
+  .attr("y", d => -5)
+  .attr("width", 40)
+  .attr("height", 10)
+  .attr("rx", 0)         // rounded corners
+  .attr("ry", 0)
+  .attr("fill", "#ffffff")
+  .attr("stroke", "#B31942")
+  .attr("stroke-width", 1)
+  .attr("opacity", 100);
+
+// Add text on top
+labels.append("text")
+  .attr("text-anchor","middle")
+  .attr("dy","0.35em")
+  .style("font-size","8px")
+  .style("fill","#B31942")   // red text
+  .style("pointer-events","none")
+  .text(d => d.properties.name.split(' ')[0]);
+
+
 
   // Zoom & pan
   const zoom = d3.zoom()
