@@ -1,8 +1,8 @@
-/* This is a comment in CSS */
-
-html, body {
+/* Global reset */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -14,13 +14,11 @@ body {
 h1 {
   color: #041f4a;
   font-size: 2em;
-  align-items: center;
   font-family: monospace;
 }
 
 h2 {
   color: white;
-  align-items: center;
   font-family: monospace;
   padding: 0.8em;
 }
@@ -31,7 +29,6 @@ h2 {
   top: 5em;
   padding: 1vw;
   max-width: 100%;
-  box-sizing: border-box;
 }
 
 .welcomeContainer h2 {
@@ -57,17 +54,11 @@ label {
   margin: 0.4rem 0;
 }
 
-.tiktokContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 input {
   width: 100%;
   height: auto;
-  padding: 0rem;
-  border: 0px solid #ccc;
+  padding: 0.5rem;
+  border: 0;
   border-radius: 0px;
   font-size: 1rem;
   font-family: monospace;
@@ -77,8 +68,8 @@ input {
 #goButton {
   width: 20%;
   height: auto;
-  padding: 0rem;
-  border: 0px solid #ccc;
+  padding: 0.5rem;
+  border: 0;
   border-radius: 10px;
   font-size: 1rem;
   background-color: #f993eb;
@@ -95,14 +86,13 @@ header {
   display: block;
   text-decoration: none;
   color: white;
-  padding: 2rem 2rem;
+  padding: 2rem;
   justify-content: space-between;
   align-items: center;
   position: fixed;
   top: 0;
   z-index: 1000;
   width: 100%;
-  box-sizing: border-box;
   font-family: monospace;
 }
 
