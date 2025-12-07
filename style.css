@@ -74,6 +74,7 @@ input {
   font-size: 1rem;
   background-color: #f993eb;
   font-family: monospace;
+  font-color: white;
 }
 
 #goButton:hover {
