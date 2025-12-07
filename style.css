@@ -1,0 +1,150 @@
+/* This is a comment in CSS */
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #dedede;
+  font-family: monospace;
+  margin-top: 15rem;
+}
+
+h1 {
+  color: #041f4a;
+  font-size: 2em;
+  align-items: center;
+  font-family: monospace;
+}
+
+h2 {
+  color: white;
+  align-items: center;
+  font-family: monospace;
+  padding: 0.8em;
+}
+
+.welcomeContainer {
+  text-align: center;
+  position: relative;
+  top: 5em;
+  padding: 1vw;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.welcomeContainer h2 {
+  color: white;
+  font-family: monospace;
+  font-size: clamp(2rem, 15vw, 20rem);
+  margin: 0;
+}
+
+p {
+  font-size: 1.2em;
+  line-height: 1.6;
+  font-family: monospace;
+}
+
+label {
+  display: block;
+  font: 1rem monospace;
+}
+
+input,
+label {
+  margin: 0.4rem 0;
+}
+
+.tiktokContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+input {
+  width: 100%;
+  height: auto;
+  padding: 0rem;
+  border: 0px solid #ccc;
+  border-radius: 0px;
+  font-size: 1rem;
+  font-family: monospace;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#goButton {
+  width: 20%;
+  height: auto;
+  padding: 0rem;
+  border: 0px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+  background-color: #f993eb;
+  font-family: monospace;
+}
+
+#goButton:hover {
+  color: #ffbb50;
+  background-color: #e67dc8;
+}
+
+header {
+  background-color: #ffffff;
+  display: block;
+  text-decoration: none;
+  color: white;
+  padding: 2rem 2rem;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: monospace;
+}
+
+header h1 a {
+  text-decoration: none;
+  color: #041f4a;
+  font-family: monospace;
+}
+
+header h1 a:hover {
+  color: #ffbb50;
+}
+
+main {
+  margin-top: 0;
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: monospace;
+}
+
+.nav-tabs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 2rem;
+  font: 1rem monospace;
+}
+
+.nav-tabs li a {
+  color: #041f4A;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s ease;
+  font-family: monospace;
+}
+
+.nav-tabs li a:hover,
+.nav-tabs li a:focus {
+  border-bottom: 2px solid #FFBB50;
+}
