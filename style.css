@@ -72,14 +72,21 @@ input {
   border: 0;
   border-radius: 10px;
   font-size: 1rem;
-  background-color: #f993eb;
   font-family: monospace;
-  color: white;
+
+  background-color: #f993eb;
+  color: white;          /* text color */
+  cursor: pointer;
+
+  /* Reset browser defaults */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 #goButton:hover {
-  color: B31942;
-  background-color: #ffffff;
+  background-color: #e67dc8;
+  color: #ffbb50;
 }
 
 header {
