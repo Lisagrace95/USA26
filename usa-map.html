@@ -15,7 +15,7 @@
     --card: #ffffff;
     --accent: #B31942;
     --muted: #B31942;
-    --selected: #B31942;
+    --selected: #dedede;
   }
   html,body { height:50%; margin:0; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--bg); color:#0b1220; }
   .wrap {
@@ -57,24 +57,24 @@
     transition: fill 160ms ease, transform 120ms ease;
   }
   .state:hover, .state:focus {
-    fill: #cfe0f6;
+    fill: #dedede;
     outline: none;
     transform: translateY(-1px);
   }
   .state.selected {
     fill: var(--selected);
     color: white;
-    filter: drop-shadow(0 6px 14px rgba(179,25,66,0.12));
+  
   }
 
   /* tooltip */
   .tooltip {
     position: absolute;
     pointer-events: none;
-    background: rgba(10,49,97,0.98);
+    background: #0A3161;
     color: #fff;
     padding: 8px 10px;
-    border-radius: 8px;
+    border-radius: 0px;
     font-size: 13px;
     box-shadow: 0 8px 30px rgba(10,49,97,0.15);
     transform: translate(-50%, -120%);
@@ -168,7 +168,7 @@ const color = d3.scaleQuantize()
           .style("left", mx + "px")
           .style("top", my + "px")
           .style("display", "block")
-          .html(`<strong>${d.properties.name}</strong><div style="font-size:12px;color:#cbd7ec">value: ${sampleValues[d.id]}</div>`);
+          .html(`<strong>${d.properties.name}</strong><div style="font-size:12px;color:#ffff"></div>`);
       })
       .on("mouseleave", () => tooltip.style("display","none"))
       .on("click", function(event, d) {
@@ -197,30 +197,7 @@ const color = d3.scaleQuantize()
 
   // Add simple labels for larger states (optional)
   // We filter to labels where centroids exist inside the path bounding box.
-// Add labels ONLY to red states
-// Add labels ONLY to red states
-const labels = g.selectAll("g.label-group")
-  .data(states.filter(d => sampleValues[d.id] === 1)) // ONLY red states
-  .enter()
-  .append("g")
-    .attr("class", "label-group")
-    .attr("transform", d => {
-      const c = path.centroid(d);
-      return `translate(${c[0]},${c[1]})`;
-    });
 
-// Add white background rectangle
-labels.append("rect")
-  .attr("x", d => -20)   // adjust width / padding as needed
-  .attr("y", d => -5)
-  .attr("width", 40)
-  .attr("height", 10)
-  .attr("rx", 0)         // rounded corners
-  .attr("ry", 0)
-  .attr("fill", "#ffffff")
-  .attr("stroke", "#B31942")
-  .attr("stroke-width", 1)
-  .attr("opacity", 100);
 
 // Add text on top
 labels.append("text")
