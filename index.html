@@ -1,33 +1,44 @@
-
 <!DOCTYPE html>
-<html lang="en">
-   <head>
-    <meta charset="UTF-8">
-    <title> USA 2026 </title>
-    <link rel="stylesheet" href="style.css">
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Password Protected</title>
+  <style>
+    body { font-family: monospace; display: flex; height: 100vh;
+           justify-content: center; align-items: center; background: #dedede; }
+    #box { background: white; padding: 2rem; border-radius: 10px; text-align: center; }
+    input, button { margin-top: 1rem; font-family: monospace; }
+  </style>
 </head>
 
-
 <body>
+  <div id="box">
+    <h2>Enter Password</h2>
+    <input id="pw" type="password">
+    <button onclick="checkPass()">Go</button>
+    <p id="msg" style="color:red;"></p>
+  </div>
 
-    <div id="header"></div>
-    <script>
-      fetch('header.html')
-        .then(res => res.text())
-        .then(html => {
-          document.getElementById('header').innerHTML = html;
-        });
-    </script>
+<script>
+  // THIS IS YOUR HASHED PASSWORD — the real password is NOT here
+  const storedHash = "YOUR_SHA256_HASH_HERE";
 
-<div class="welcomeContainer">
-    <h2> WELCOME</h2>
-     </div>
-  
+  async function sha256(str) {
+    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(x => x.toString(16).padStart(2, "0")).join("");
+  }
 
-<main> 
-    
-   
-</main>
+  async function checkPass() {
+    const input = document.getElementById("pw").value;
+    const inputHash = await sha256(input);
+
+    if (inputHash === storedHash) {
+      window.location.href = "home.html";
+    } else {
+      document.getElementById("msg").textContent = "Incorrect password.";
+    }
+  }
+</script>
 </body>
-
 </html>
+
