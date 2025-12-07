@@ -6,13 +6,13 @@
 }
 
 body {
-  background-color: #dedede;
+  background-color: #ffffff;
   font-family: monospace;
   margin-top: 15rem;
 }
 
 h1 {
-  color: #041f4a;
+  color: #0A3161;
   font-size: 2em;
   font-family: monospace;
 }
@@ -77,8 +77,8 @@ input {
 }
 
 #goButton:hover {
-  color: #ffbb50;
-  background-color: #e67dc8;
+  color: #	B31942
+  background-color: #ffffff;
 }
 
 header {
