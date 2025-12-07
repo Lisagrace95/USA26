@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Interactive Vector Map — USA States</title>
+<title></title>
 
 <!-- D3 + topojson from CDN -->
 <script src="https://d3js.org/d3.v7.min.js"></script>
@@ -13,8 +13,8 @@
   :root{
     --bg: #f6f9fc;
     --card: #ffffff;
-    --accent: #0A3161;
-    --muted: #666;
+    --accent: #B31942;
+    --muted: #B31942;
     --selected: #B31942;
   }
   html,body { height:100%; margin:0; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--bg); color:#0b1220; }
@@ -84,21 +84,7 @@
     z-index: 10;
   }
 
-  /* legend */
-  .legend {
-    display:flex;
-    gap:10px;
-    align-items:center;
-    margin-top:12px;
-    font-size: 13px;
-    color: var(--muted);
-  }
-  .legend .swatch {
-    width:28px;
-    height:10px;
-    border-radius:3px;
-    box-shadow: inset 0 -2px 4px rgba(0,0,0,0.05);
-  }
+
 
   /* small help text */
   .help { margin-left:auto; font-size: 13px; color:var(--muted); }
@@ -110,24 +96,18 @@
   <div class="card">
     <header>
       <div>
-        <h1>Interactive Vector Map — USA States</h1>
-        <div class="subtitle">Hover for name, click to select. Zoom/pan with scroll & drag.</div>
+        <h1></h1>
+        <div class="subtitle"></div>
       </div>
-      <div class="help">Data-driven coloring is supported — see code comments.</div>
+      <div class="help">.</div>
     </header>
 
     <div class="map-wrap" id="map-wrap">
       <div id="tooltip" class="tooltip" role="status" aria-live="polite"></div>
-      <svg id="svg-map" viewBox="0 0 975 610" preserveAspectRatio="xMidYMid meet" aria-label="Map of USA states"></svg>
+      <svg id="svg-map" viewBox="0 0 975 610" preserveAspectRatio="xMidYMid meet" aria-label=""></svg>
     </div>
 
-    <div class="legend" id="legend">
-      <div style="font-weight:600">Legend:</div>
-      <div class="swatch" style="background:#e8eef6"></div><div>Default</div>
-      <div class="swatch" style="background:#8fb6ea"></div><div>Mid</div>
-      <div class="swatch" style="background:#3a75c4"></div><div>High</div>
-      <div style="margin-left:auto; color:var(--muted); font-size:13px;">Click state to toggle selection</div>
-    </div>
+ 
   </div>
 </div>
 
@@ -206,7 +186,7 @@
     .attr("d", path)
     .attr("fill","none")
     .attr("stroke","#fff")
-    .attr("stroke-width",0.8)
+    .attr("stroke-width",2)
     .attr("pointer-events","none");
 
   // Add simple labels for larger states (optional)
@@ -225,7 +205,7 @@
       })
       .attr("text-anchor","middle")
       .attr("dy","0.35em")
-      .style("font-size","10px")
+      .style("font-size","9px")
       .style("pointer-events","none")
       .style("fill","#0A3161")
       .text(d => d.properties && d.properties.name ? d.properties.name.split(' ')[0] : '');
